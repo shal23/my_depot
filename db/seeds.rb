@@ -7,13 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) are set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
-puts 'ROLES'
-YAML.load(ENV['ROLES']).each do |role|
-  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-  puts 'role: ' << role
-end
-puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
-user.confirm!
-user.add_role :admin
+#puts 'ROLES'
+#YAML.load(ENV['ROLES']).each do |role|
+ # Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+  #puts 'role: ' << role
+#end
+#puts 'DEFAULT USERS'
+#user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+#puts 'user: ' << user.name
+#user.confirm!
+#user.add_role :admin
+
+Product.delete_all
+#...
+Product.create(title: 'Programming Ruby 1.9', description:
+	%{<p>
+		Ruby is the fastest growing and most exciting dynamic language out there. If you need to get working programs delivered fast,you should add Ruby to your toolbox.
+	   </p>},
+	  image_url: 'ruby.jpg',
+	  price: 49.95)
+#...
