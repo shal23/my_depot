@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+  def hidden_div_if(condition, attributes = {}, &block)
+
+   if condition
+
+      attributes["style"] = "display: none"
+
+    end
+
+    content_tag("div", attributes, &block)
+
+  end
+
+end
+
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
@@ -12,4 +27,3 @@ module ApplicationHelper
     html.html_safe
   end
 
-end
